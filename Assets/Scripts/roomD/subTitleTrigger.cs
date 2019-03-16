@@ -35,6 +35,14 @@ public class subTitleTrigger : MonoBehaviour
         StartCoroutine(subDuration());
     }
 
+    /*
+        An alternative way to start the display, rather than trigger. -Andrew
+    */
+    public void StartDisplay()
+    {
+        StartCoroutine(subDelay());
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         #region fadeEvent
