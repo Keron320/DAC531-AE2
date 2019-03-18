@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Statue_Script : MonoBehaviour
 {
-    // Disable the behaviour when it becomes invisible...
+    // Enable the behaviour when it becomes invisible...
     void OnBecameInvisible()
     {
-        enabled = true;
+        GetComponent<LookAtPlayer>().enabled = true;
     }
 
-    // ...and enable it again when it becomes visible.
+    // ...and disable it again when it becomes visible.
     void OnBecameVisible()
     {
-        enabled = false;
+        GetComponent<LookAtPlayer>().enabled = false;
     }
 }

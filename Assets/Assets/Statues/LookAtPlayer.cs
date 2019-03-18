@@ -14,7 +14,7 @@ public class LookAtPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.Rotate(-90,0,0,Space.World);
-        transform.LookAt(target.transform);
+        transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
+        transform.Rotate(180, transform.rotation.y, transform.rotation.z);
     }
 }
