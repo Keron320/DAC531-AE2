@@ -25,8 +25,11 @@ public class PlayerController : MonoBehaviour
     public float mouseSensitivity = 100.0f;
     public float interactionRayLength = 2.0f;
 
+    public GameObject flashlightSource;
+
     private float _onwardsInput, _sidewaysInput, _mouseHorizontal, _mouseVertical;
     private bool _isInteracting = false, _hasInteracted = false, _inventoryButton = false, _hasInventory = false, _pauseButton = false, _hasPause = false;
+    private bool _useFlaslight = false;
     private CharacterController _characterController;
     private Vector3 _moveDirection, _mouseDirection = Vector3.zero;
 
@@ -71,6 +74,8 @@ public class PlayerController : MonoBehaviour
         _isInteracting   =  _player.GetButton("Interact");
         _pauseButton     =  _player.GetButtonDown("Pause");
         _inventoryButton =  _player.GetButtonDown("Inventory");
+        _useFlaslight    =  _player.GetButtonDown("Flashlight");
+
     }
 
     private void ProcessInput()
@@ -112,6 +117,11 @@ public class PlayerController : MonoBehaviour
         {
             if(inventoryMenuUi.activeSelf) UnPauseGame();
             else PauseGame();
+        }
+
+        if(_useFlaslight)
+        {
+            flashlightSource.SetActive(!flashlightSource.activeSelf);
         }
     }
 
