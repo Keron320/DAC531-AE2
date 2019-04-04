@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public float clampAngle = 80.0f;
     public float mouseSensitivity = 100.0f;
     public float interactionRayLength = 2.0f;
+    public AudioClip[] footstepSounds;
 
     public GameObject flashlightSource;
 
@@ -60,6 +61,24 @@ public class PlayerController : MonoBehaviour
         ProcessInput();
     }
 
+    private void PlayFootStepAudio()
+    {
+        if (!_characterController.isGrounded) return;
+
+        // pick & play a random footstep sound from the array,
+        // excluding sound at index 0
+        var audioSource = GetComponent<AudioSource>();
+
+        if(audioSource.isPlaying) return;
+
+        int n = Random.Range(1, footstepSounds.Length);
+        audioSource.clip = footstepSounds[n];
+        audioSource.PlayOneShot(audioSource.clip);
+        // move picked sound to index 0 so it's not picked next time
+        footstepSounds[n] = footstepSounds[0];
+        footstepSounds[0] = audioSource.clip;
+    }
+
     private void CheckRewired()
     {
         // KEYBOARD VALUES
@@ -85,6 +104,8 @@ public class PlayerController : MonoBehaviour
             _moveDirection = new Vector3(_sidewaysInput, 0.0f, _onwardsInput);
             _moveDirection = transform.TransformDirection(_moveDirection);
             _moveDirection *= speed;
+            if(_moveDirection.x != 0.0f || _moveDirection.y != 0.0f)
+                PlayFootStepAudio();
         }
 
         _moveDirection.y -= gravity * Time.deltaTime;
