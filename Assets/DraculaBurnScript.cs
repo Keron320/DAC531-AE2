@@ -37,6 +37,7 @@ public class DraculaBurnScript : MonoBehaviour
             foreach (var item in particles)
             {
                 item.gameObject.SetActive(true);
+                
             }
         }
     }
