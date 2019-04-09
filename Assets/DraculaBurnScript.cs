@@ -6,8 +6,9 @@ public class DraculaBurnScript : MonoBehaviour
 {
    public ParticleSystem[] particles;
    public Material[] material;
-   bool isDissolving = false;
+   public bool isDissolving = false;
    public float speed;
+   public float dissolve;
 
       
     void Start()
@@ -28,16 +29,16 @@ public class DraculaBurnScript : MonoBehaviour
 
         if (isDissolving)
         {
+            dissolve += speed * Time.deltaTime;
             //Animating cutout
             foreach (var matts in material)
             {
-                matts.SetFloat("_DissolveCutoff", speed * Time.time);
+                matts.SetFloat("_DissolveCutoff", dissolve);
             }
             // Activating particle systems
             foreach (var item in particles)
             {
-                item.gameObject.SetActive(true);
-                
+               item.gameObject.SetActive(true);
             }
         }
     }
