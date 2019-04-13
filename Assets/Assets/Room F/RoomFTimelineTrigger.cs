@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using Rewired;
 
 public class RoomFTimelineTrigger : MonoBehaviour
 {
     public PlayableDirector pD;
     public PlayableAsset spiderBitingYou;
     public PlayableAsset spiderDying;
-    bool canBePressed;
-    // Start is called before the first frame update
+    public bool canBePressed;
+    Player _player;
+
+
+   void Start()
+   {
+       ReInput.players.GetPlayer((int)0);
+   }
     private void OnTriggerEnter(Collider other) 
     {
         if (other.tag == "Player")
@@ -37,12 +44,17 @@ public class RoomFTimelineTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // chceck for imput from player
-        if (canBePressed)
-        {
-            // if player pressed interaction button change playable asset to spider dying
-            
+        // chceck for imput from player and if player pressed interaction button change playable asset to spider dying
+        if (canBePressed &&  Input.GetKeyDown(KeyCode.F))
+        {       
+           Debug.Log("works");
+           pD.playableAsset = spiderDying; 
         }
         
+    }
+
+     void UseItem()
+    {
+               
     }
 }
