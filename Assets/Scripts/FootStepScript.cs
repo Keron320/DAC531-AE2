@@ -15,6 +15,12 @@ public class FootStepScript : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.name == "Water")
+        Debug.Log("whatever");
+    }
+
     private AudioClip GetRandomClip()
     {
         if (isInWater)
