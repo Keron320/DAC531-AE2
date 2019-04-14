@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
         _player = ReInput.players.GetPlayer((int)playerId);
         _characterController = GetComponent<CharacterController>();
+
+        transform.position = GameObject.Find("SpawnPosition").transform.position;
     }
 
     public void UpdatePosition()    

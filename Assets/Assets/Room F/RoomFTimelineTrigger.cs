@@ -45,9 +45,8 @@ public class RoomFTimelineTrigger : MonoBehaviour
     void Update()
     {
         // chceck for imput from player and if player pressed interaction button change playable asset to spider dying
-        if (canBePressed &&  Input.GetKeyDown(KeyCode.F))
+        if (canBePressed &&  ReInput.players.GetPlayer(0).GetButton("Interact"))
         {       
-           Debug.Log("works");
            pD.playableAsset = spiderDying; 
         }
         
