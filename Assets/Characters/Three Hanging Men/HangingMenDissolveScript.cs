@@ -7,8 +7,18 @@ public class HangingMenDissolveScript : MonoBehaviour
    public ParticleSystem[] particles;
    public Material[] material;
     bool isDissolving = false;
-       public float speed;
+    public float speed;
+
+    float dissolve;
         
+        private void Start() 
+        {
+            // resets dissolve effect to zero
+            foreach (var matts in material)
+                {
+                    matts.SetFloat("_DissolveCutoff",0);
+                }
+        }
 
         void OnTriggerEnter(Collider col)
         {
@@ -21,10 +31,11 @@ public class HangingMenDissolveScript : MonoBehaviour
         {
             if (isDissolving)
             {
+                dissolve += speed * Time.deltaTime;
                 //Animating cutout
                 foreach (var matts in material)
                 {
-                    matts.SetFloat("_DissolveCutoff", speed * Time.time);
+                    matts.SetFloat("_DissolveCutoff", dissolve);
                 }
                 foreach (var item in particles)
                 {
