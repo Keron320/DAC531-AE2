@@ -179,6 +179,8 @@ public class PlayerController : MonoBehaviour
             pauseMenuUi.SetActive(false);
     }
 
+
+
     public void ChangeHealth(int amount)    
         => playerStats.health += amount;
     
