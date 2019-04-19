@@ -145,9 +145,73 @@ public class UIHealthController : MonoBehaviour {
         //Keep an update on playerhealth at all times
         playerHealth = myPlayer.GetComponent<PlayerController>().playerStats.health;
 
-        if (health.Count > playerHealth)
+        if (iAmHealth == true)
         {
-            removeUnit();
+            if (health.Count > playerHealth)
+            {
+                removeUnit();
+            }
+        }
+
+
+        else if (iAmSanity == true)
+        {
+            if (health.Count < playerSanity)
+            {
+                removeUnit();
+            }
+        }
+
+
+        else if (iAmIntelligence == true)
+        {
+            if (health.Count < playerIntelligence)
+            {
+                removeUnit();
+            }
+        }
+
+
+        else if (iAmPerception == true)
+        {
+            if (health.Count < playerPerception)
+            {
+                removeUnit();
+            }
+        }
+
+
+        else if (iAmWillpower == true)
+        {
+            if (health.Count < playerWillpower)
+            {
+                removeUnit();
+            }
+        }
+
+
+        else if (iAmCharisma == true)
+        {
+            if (health.Count < playerCharisma)
+            {
+                removeUnit();
+            }
+        }
+
+        else if (iAmStrength == true)
+        {
+            if (health.Count < playerStrength)
+            {
+                removeUnit();
+            }
+        }
+
+        else if (iAmAgility == true)
+        {
+            if (health.Count < playerAgility)
+            {
+                removeUnit();
+            }
         }
     }
 
