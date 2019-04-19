@@ -12,6 +12,8 @@ public class NPCmovement : MonoBehaviour {
 
     public LayerMask groundLayer;
     public float rayLength;
+    public NavMeshAgent agent;
+
 
     #endregion
 
@@ -19,7 +21,6 @@ public class NPCmovement : MonoBehaviour {
 
     bool possible = true;
 
-        NavMeshAgent agent;
         Vector3 position;
         Animator anim;
         RaycastHit hit;

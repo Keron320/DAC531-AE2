@@ -33,11 +33,13 @@ public class PlayerController : MonoBehaviour
     private bool _useFlaslight = false;
     private CharacterController _characterController;
     private Vector3 _moveDirection, _mouseDirection = Vector3.zero;
+    private Animator anim;
 
     Player _player;
 
     void Start()
     {
+        anim = transform.GetChild(1).GetComponent<Animator>();
         if(instance == null)
         {
             instance = this;
@@ -106,7 +108,12 @@ public class PlayerController : MonoBehaviour
             _moveDirection = new Vector3(_sidewaysInput, 0.0f, _onwardsInput);
             _moveDirection = transform.TransformDirection(_moveDirection);
             _moveDirection *= speed;
-            if(_moveDirection.x != 0.0f || _moveDirection.y != 0.0f)
+            anim.SetFloat("speed", 0);
+
+            if (_moveDirection.x != 0.0f && _moveDirection.z != 0.0f)
+                anim.SetFloat("speed", speed);
+
+            if (_moveDirection.x != 0.0f || _moveDirection.y != 0.0f)
                 PlayFootStepAudio();
         }
 
