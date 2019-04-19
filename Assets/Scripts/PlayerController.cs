@@ -158,17 +158,14 @@ public class PlayerController : MonoBehaviour
     private void ProcessInteraction()
     {
         _hasInteracted = true;
-        RaycastHit hit;
-        Vector3 dir = Camera.main.transform.forward;
+        var dir = Camera.main.transform.forward;
         Debug.DrawRay(Camera.main.transform.position, dir * interactionRayLength, Color.green);
-        if (Physics.Raycast(Camera.main.transform.position, dir, out hit, interactionRayLength))
+        if (Physics.Raycast(Camera.main.transform.position, dir, out var hit, interactionRayLength))
         {
-            if (hit.collider.gameObject.GetComponent<InteractiveObject>() != null)
-            {
-                var interactObject = hit.collider.gameObject.GetComponent<InteractiveObject>();
-                if(!interactObject.canInteract) return;
-                interactObject.UseItem();
-            }
+            if (hit.collider.gameObject.GetComponent<InteractiveObject>() == null) return;
+            var interactObject = hit.collider.gameObject.GetComponent<InteractiveObject>();
+            if(!interactObject.canInteract) return;
+            interactObject.UseItem();
         }
     }
 
@@ -185,6 +182,8 @@ public class PlayerController : MonoBehaviour
         if(turnPanelOff)
             pauseMenuUi.SetActive(false);
     }
+
+
 
     public void ChangeHealth(int amount)    
         => playerStats.health += amount;

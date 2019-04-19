@@ -13,7 +13,7 @@ public class LevelDoorInteractionScript : InteractiveObject
     {
         if (!canInteract) return;
         nextScene.SetActive(true);
-        GameObject.Find("Player").transform.position = spawnPosition.position;
+        GameObject.FindGameObjectWithTag("Player").transform.position = spawnPosition.position;
         previousScene.SetActive(false);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class setActive : MonoBehaviour
 {
     public GameObject activateObject;
@@ -16,7 +17,13 @@ public class setActive : MonoBehaviour
     public void disableOnly()
     {
         disableObject.SetActive(false);
+
     }
 
-
+    //Only to use in menu
+    public void returnGame()
+    {
+        Time.timeScale = 1;
+        disableObject.SetActive(false);
+    }
 }
